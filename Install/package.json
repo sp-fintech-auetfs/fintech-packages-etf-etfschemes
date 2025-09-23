@@ -1,0 +1,46 @@
+{
+	"name" : "EtfSchemes",
+	"display_name" : "ETF Schemes",
+	"description" : "<p>ETF Schemes</p>",
+	"module_type" : "packages",
+	"app_type" : "fintech",
+	"category" : "etf",
+	"version" : "0.0.0",
+	"repo" : "https://github.com/sp-fintech-auetfs/fintech-packages-etf-etfschemes",
+	"class" : "Apps\\Fintech\\Packages\\Etf\\Schemes\\EtfSchemes",
+	"dependencies" : 
+	{
+		"core" : 
+		{
+			"name" : "Core",
+			"version" : "0.0.0-rc.9",
+			"repo" : "https://github.com/sp-framework/core"
+		},
+		"apptype" : 
+		{
+			"name" : "Fintech",
+			"version" : "0.3.0",
+			"repo" : "https://github.com/sp-fintech/fintech"
+		},
+		"middlewares" : [],
+		"externals" : 
+		{
+			"composer" : 
+			{
+				"require" : []
+			},
+			"config" : 
+			{
+				"allow-plugins" : []
+			},
+			"extra" : 
+			{
+				"patches" : []
+			}
+		}
+	},
+	"settings" : 
+	{
+		"api_clients" : []
+	}
+}
