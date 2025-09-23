@@ -75,7 +75,7 @@ class EtfSchemes extends BasePackage
         }
 
         if ($customScheme) {
-            $this->setModelToUse(AppsFintechEtfSchemesCustom::class);
+            $this->switchModel(AppsFintechEtfSchemesCustom::class);
         }
 
         $this->setFFRelations(true);
@@ -1150,7 +1150,7 @@ class EtfSchemes extends BasePackage
 
     public function searchAllSchemes(string $schemeQueryString)
     {
-        $this->setModelToUse(AppsFintechEtfSchemesAll::class);
+        $this->switchModel(AppsFintechEtfSchemesAll::class);
 
         if ($this->config->databasetype === 'db') {
             $schemes =
@@ -1639,7 +1639,7 @@ class EtfSchemes extends BasePackage
 
     public function getWatchlistByAccountId()
     {
-        $this->setModelToUse(AppsFintechEtfSchemesWatchlists::class);
+        $this->switchModel(AppsFintechEtfSchemesWatchlists::class);
 
         if ($this->config->databasetype === 'db') {
             $watchlists =
@@ -1708,5 +1708,20 @@ class EtfSchemes extends BasePackage
         $this->addResponse('Unable to process watchlist. Contact administrator!', 1);
 
         return false;
+    }
+
+    public function switchModel($model = null)
+    {
+        if (!$model) {
+            $this->setModelToUse($this->modelToUse = AppsFintechEtfSchemes::class);
+
+            $this->packageName = 'etfschemes';
+        } else {
+            $this->setModelToUse($model);
+        }
+
+        if ($this->config->databasetype !== 'db') {
+            $this->ffStore = null;
+        }
     }
 }
