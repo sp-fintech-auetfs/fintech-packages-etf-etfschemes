@@ -78,7 +78,11 @@ class EtfSchemes extends BasePackage
             $this->switchModel(AppsFintechEtfSchemesCustom::class);
         }
 
-        $this->setFFRelations(true);
+        if (!$includeNavs && !$includeNavsChunks && !$includeNavsRR) {
+            $this->setFFRelations(false);
+        } else {
+            $this->setFFRelations(true);
+        }
 
         $this->getFirst('id', $id);
 
@@ -1673,6 +1677,11 @@ class EtfSchemes extends BasePackage
             $watchlist['schemes'] = $this->helper->encode([$schemeId]);
 
             if ($this->add($watchlist)) {
+                if ($this->opCache) {
+                    $this->opCache->removeCache('dashboards', 'core');
+                    $this->opCache->removeCache('widgets', 'core');
+                }
+
                 $this->addResponse('Added to watchlist', 0, ['task' => 'add']);
 
                 return true;
@@ -1697,6 +1706,11 @@ class EtfSchemes extends BasePackage
                     array_push($watchlists['schemes'], $schemeId);
 
                     if ($this->update($watchlists)) {
+                        if ($this->opCache) {
+                            $this->opCache->removeCache('dashboards', 'core');
+                            $this->opCache->removeCache('widgets', 'core');
+                        }
+
                         $this->addResponse('Added to watchlist', 0, ['task' => 'add']);
 
                         return true;
