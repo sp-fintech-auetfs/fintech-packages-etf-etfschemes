@@ -78,6 +78,14 @@ class EtfSchemesAll
                     ]
                 ),
                 new Column(
+                    'dividend_frequency',
+                    [
+                        'type'          => Column::TYPE_VARCHAR,
+                        'size'          => 50,
+                        'notNull'       => true,
+                    ]
+                ),
+                new Column(
                     'category_id',
                     [
                         'type'          => Column::TYPE_SMALLINTEGER,
@@ -158,6 +166,13 @@ class EtfSchemesAll
                     [
                         'type'          => Column::TYPE_FLOAT,
                         'notNull'       => true,
+                    ]
+                ),
+                new Column(
+                    'nav_multiplier',
+                    [
+                        'type'          => Column::TYPE_FLOAT,
+                        'notNull'       => false,
                     ]
                 )
             ],

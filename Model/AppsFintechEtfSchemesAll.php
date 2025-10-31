@@ -22,6 +22,8 @@ class AppsFintechEtfSchemesAll extends BaseModel
 
     public $plan_type;
 
+    public $dividend_frequency;
+
     public $category_id;
 
     public $amc_id;
@@ -43,4 +45,6 @@ class AppsFintechEtfSchemesAll extends BaseModel
     public $navs_last_updated;
 
     public $latest_nav;
+
+    public $nav_multiplier;
 }

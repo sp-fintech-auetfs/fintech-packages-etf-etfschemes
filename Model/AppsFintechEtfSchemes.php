@@ -30,6 +30,8 @@ class AppsFintechEtfSchemes extends BaseModel
 
     public $plan_type;
 
+    public $dividend_frequency;
+
     public $category_id;
 
     public $amc_id;
@@ -95,6 +97,8 @@ class AppsFintechEtfSchemes extends BaseModel
     public $thirty_year_rr;
 
     public $latest_nav;
+
+    public $nav_multiplier;
 
     public function initialize()
     {

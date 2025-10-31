@@ -75,6 +75,8 @@ class AppsFintechEtfSchemesCustom extends BaseModel
 
     public $latest_nav;
 
+    public $nav_multiplier;
+
     public $shared_ids;
 
     public function initialize()

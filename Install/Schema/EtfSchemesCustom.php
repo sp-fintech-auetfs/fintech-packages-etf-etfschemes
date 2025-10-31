@@ -237,6 +237,13 @@ class EtfSchemesCustom
                     ]
                 ),
                 new Column(
+                    'nav_multiplier',
+                    [
+                        'type'          => Column::TYPE_FLOAT,
+                        'notNull'       => false,
+                    ]
+                ),
+                new Column(
                     'shared_ids',
                     [
                         'type'          => Column::TYPE_JSON,
