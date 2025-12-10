@@ -858,15 +858,16 @@ class EtfSchemes extends BasePackage
                     $firstChunk = $this->helper->first($responseData['chunks'][$data['chunk_size']]);
 
                     $navMultiplier = 1;
-
+                    $schemeDividends = 0;
                     foreach ($responseData['chunks'][$data['chunk_size']] as $chunkDate => $chunk) {
                         $responseData['chunks'][$data['chunk_size']][$chunkDate]['dividends_amount'] = $chunk['dividends_amount'];
 
                         $responseData['chunks'][$data['chunk_size']][$chunkDate]['nav_multiplier'] = $navMultiplier;
                         //Add dividend to NAV
                         if (isset($chunk['dividends_amount']) && $chunk['dividends_amount'] > 0) {
-                            $responseData['chunks'][$data['chunk_size']][$chunkDate]['nav_multiplier'] =
-                                $navMultiplier = ($chunk['nav'] + $chunk['dividends_amount']) / $chunk['nav'];
+                            // $responseData['chunks'][$data['chunk_size']][$chunkDate]['nav_multiplier'] =
+                                // $navMultiplier = ($chunk['nav'] + $chunk['dividends_amount']) / $chunk['nav'];
+                            $schemeDividends += $chunk['dividends_amount'];
                         }
 
                         $responseData['chunks'][$data['chunk_size']][$chunkDate]['diff'] = numberFormatPrecision($chunk['nav'] - $firstChunk['nav'], 4);
@@ -875,11 +876,13 @@ class EtfSchemes extends BasePackage
                         $firstNav = $firstChunk['nav'];
 
                         $responseData['chunks'][$data['chunk_size']][$chunkDate]['nav_with_div'] =
-                            $timeDateChunkNav = $chunk['nav'] * $navMultiplier;
+                            // $timeDateChunkNav = $chunk['nav'] * $navMultiplier;
+                            $timeDateChunkNav = $chunk['nav'] + $schemeDividends;
                         $responseData['chunks'][$data['chunk_size']][$chunkDate]['reinvest_diff'] =
                             numberFormatPrecision($timeDateChunkNav - $firstNav, 4);
                         $responseData['chunks'][$data['chunk_size']][$chunkDate]['reinvest_diff_percent'] =
-                            numberFormatPrecision(($timeDateChunkNav * 100 / $firstNav) - 100, 2);
+                            // numberFormatPrecision(($timeDateChunkNav * 100 / $firstNav) - 100, 2);
+                            round((($timeDateChunkNav - $firstNav) / $firstNav) * 100, 2);
                     }
 
                     $this->generateTrendData($scheme, $responseData, $data, $daysDiff, $customChunks);
