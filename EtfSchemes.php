@@ -1121,8 +1121,9 @@ class EtfSchemes extends BasePackage
             }
 
             $responseData['statistics']['total'] = count($cagrs);
-            $responseData['statistics']['average'] = numberFormatPrecision(\MathPHP\Statistics\Average::mean($cagrs), 2);
+            $responseData['statistics']['mean'] = numberFormatPrecision(\MathPHP\Statistics\Average::mean($cagrs), 2);
             $responseData['statistics']['median'] = numberFormatPrecision(\MathPHP\Statistics\Average::median($cagrs), 2);
+            $responseData['statistics']['mode'] = numberFormatPrecision(implode(',', \MathPHP\Statistics\Average::mode($cagrs)), 2);
             $responseData['statistics']['max'] = numberFormatPrecision($cagrs[\MathPHP\Search::argMax($cagrs)], 2);
             $responseData['statistics']['min'] = numberFormatPrecision($cagrs[\MathPHP\Search::argMin($cagrs)], 2);
             if ($distribution['negative'] > 0) {
