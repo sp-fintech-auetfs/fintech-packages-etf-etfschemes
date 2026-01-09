@@ -238,6 +238,8 @@ class EtfSchemes extends BasePackage
              !isset($schemeSnapshot['navs_chunks_ids'][$timeline]) ||
              !isset($schemeSnapshot['rolling_returns_ids'][$timeline]))
         ) {
+            $this->switchModel(AppsFintechEtfSchemes::class);
+
             $schemeSnapshot['snapshots'][$timeline] = [];
 
             $etfToolsExtractDataPackage = $this->usePackage(EtfToolsExtractdata::class);
